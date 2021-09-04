@@ -9,7 +9,7 @@ import java.util.*;
 
 @Getter
 @Setter
-public class PlayerTeam extends Team<PlayerTeam> {
+public class PlayerTeam extends Team {
 
     // members of the team
     private UUID leaderId;

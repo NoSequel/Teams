@@ -5,7 +5,7 @@ import io.github.nosequel.hcf.teams.Team;
 
 import java.util.UUID;
 
-public class SystemTeam extends Team<SystemTeam> {
+public class SystemTeam extends Team {
 
     public SystemTeam(UUID uniqueId, String name) {
         super(uniqueId, name);

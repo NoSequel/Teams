@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @Getter
 @Setter
-public abstract class Team<T extends Team<?>> {
+public abstract class Team {
 
     protected String name;
     protected ChatColor color = ChatColor.WHITE;
