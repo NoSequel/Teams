@@ -17,10 +17,6 @@ public class PlayerTeam extends Team<PlayerTeam> {
     private final Set<UUID> members = new HashSet<>();
     private final Set<UUID> captains = new HashSet<>();
 
-    {
-        this.setStorageProvider(TeamsConstants.PLAYER_TEAM_STORAGE);
-    }
-
     public PlayerTeam(UUID leaderId, UUID uniqueId, String name) {
         super(uniqueId, name);
 
@@ -42,5 +38,10 @@ public class PlayerTeam extends Team<PlayerTeam> {
         members.addAll(this.captains);
 
         return Collections.unmodifiableSet(members);
+    }
+
+    @Override
+    public void saveEntry() {
+        TeamsConstants.PLAYER_TEAM_STORAGE.setEntry(this.uniqueId.toString(), this);
     }
 }

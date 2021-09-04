@@ -7,11 +7,12 @@ import java.util.UUID;
 
 public class SystemTeam extends Team<SystemTeam> {
 
-    {
-        this.setStorageProvider(TeamsConstants.SYSTEM_TEAM_STORAGE);
-    }
-
     public SystemTeam(UUID uniqueId, String name) {
         super(uniqueId, name);
+    }
+
+    @Override
+    public void saveEntry() {
+        TeamsConstants.SYSTEM_TEAM_STORAGE.setEntry(this.uniqueId.toString(), this);
     }
 }
