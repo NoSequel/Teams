@@ -25,6 +25,25 @@ public class PlayerTeam extends Team {
     }
 
     /**
+     * Get a {@link TeamMember} object by a provided {@link UUID}
+     * <p>
+     * This method uses the {@link PlayerTeam#getAllMembers()} method
+     * to scan the entire team for the provided UUID.
+     *
+     * @param uniqueId the unique identifier to find the team member object by
+     * @return the found team member
+     */
+    public TeamMember getTeamMember(UUID uniqueId) {
+        for (TeamMember member : this.getAllMembers()) {
+            if (member.getUniqueId().equals(uniqueId)) {
+                return member;
+            }
+        }
+
+        return null;
+    }
+
+    /**
      * Collect all members within the {@link PlayerTeam} object and
      * return them as a {@link Collection}.
      * <p>
