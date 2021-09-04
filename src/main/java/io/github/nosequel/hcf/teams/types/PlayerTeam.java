@@ -2,6 +2,7 @@ package io.github.nosequel.hcf.teams.types;
 
 import io.github.nosequel.hcf.TeamsConstants;
 import io.github.nosequel.hcf.teams.Team;
+import io.github.nosequel.hcf.teams.models.TeamMember;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,12 +13,12 @@ import java.util.*;
 public class PlayerTeam extends Team {
 
     // members of the team
-    private UUID leaderId;
+    private TeamMember leaderId;
 
-    private final Set<UUID> members = new HashSet<>();
-    private final Set<UUID> captains = new HashSet<>();
+    private final Set<TeamMember> members = new HashSet<>();
+    private final Set<TeamMember> captains = new HashSet<>();
 
-    public PlayerTeam(UUID leaderId, UUID uniqueId, String name) {
+    public PlayerTeam(TeamMember leaderId, UUID uniqueId, String name) {
         super(uniqueId, name);
 
         this.leaderId = leaderId;
@@ -31,8 +32,8 @@ public class PlayerTeam extends Team {
      *
      * @return the unmodifiable set of members
      */
-    public Collection<UUID> getAllMembers() {
-        final Set<UUID> members = new HashSet<>(this.members);
+    public Collection<TeamMember> getAllMembers() {
+        final Set<TeamMember> members = new HashSet<>(this.members);
 
         members.add(this.leaderId);
         members.addAll(this.captains);
