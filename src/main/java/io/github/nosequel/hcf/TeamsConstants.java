@@ -21,18 +21,24 @@ public class TeamsConstants {
     public static final MongoStorageHandler STORAGE_HANDLER = new MongoStorageHandler(new NoAuthMongoSettings("127.0.0.1", 6379, "teams"));
 
     // the storage providers for teams
-    public static final MongoStorageProvider<PlayerTeam> PLAYER_TEAM_STORAGE = new MongoStorageProvider<>(
-            "player_teams",
-            STORAGE_HANDLER,
-            PlayerTeam.class,
-            GSON
-    );
+    public static final MongoStorageProvider<PlayerTeam> PLAYER_TEAM_STORAGE = createStorageProvider("player_teams", PlayerTeam.class);
+    public static final MongoStorageProvider<SystemTeam> SYSTEM_TEAM_STORAGE = createStorageProvider("system_teams", SystemTeam.class);
 
-    public static final MongoStorageProvider<SystemTeam> SYSTEM_TEAM_STORAGE = new MongoStorageProvider<>(
-            "system_teams",
-            STORAGE_HANDLER,
-            SystemTeam.class,
-            GSON
-    );
-
+    /**
+     * Create a new {@link MongoStorageProvider} object from the provided
+     * arguments, and using the fields within the {@link TeamsConstants} class.
+     *
+     * @param collectionName the name of the collection to write to/read from
+     * @param clazz          the class of type to store within the database
+     * @param <T>            the type itself
+     * @return the newly created mongo storage provider
+     */
+    private static <T> MongoStorageProvider<T> createStorageProvider(String collectionName, Class<T> clazz) {
+        return new MongoStorageProvider<>(
+                collectionName,
+                STORAGE_HANDLER,
+                clazz,
+                GSON
+        );
+    }
 }
