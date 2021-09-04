@@ -64,4 +64,9 @@ public class PlayerTeam extends Team {
     public void saveEntry() {
         TeamsConstants.PLAYER_TEAM_STORAGE.setEntry(this.uniqueId.toString(), this);
     }
+
+    @Override
+    public void deleteEntry() {
+        TeamsConstants.PLAYER_TEAM_STORAGE.removeEntry(this.uniqueId.toString());
+    }
 }

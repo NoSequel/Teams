@@ -15,4 +15,9 @@ public class SystemTeam extends Team {
     public void saveEntry() {
         TeamsConstants.SYSTEM_TEAM_STORAGE.setEntry(this.uniqueId.toString(), this);
     }
+
+    @Override
+    public void deleteEntry() {
+        TeamsConstants.SYSTEM_TEAM_STORAGE.removeEntry(this.uniqueId.toString());
+    }
 }

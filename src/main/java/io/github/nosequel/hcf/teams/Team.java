@@ -22,4 +22,6 @@ public abstract class Team {
     }
 
     public abstract void saveEntry();
+    public abstract void deleteEntry();
+
 }

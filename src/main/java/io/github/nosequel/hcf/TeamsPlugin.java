@@ -1,5 +1,9 @@
 package io.github.nosequel.hcf;
 
+import io.github.nosequel.command.CommandHandler;
+import io.github.nosequel.command.bukkit.BukkitCommandHandler;
+import io.github.nosequel.hcf.commands.TeamCommand;
+import io.github.nosequel.hcf.commands.adapters.TeamTypeAdapter;
 import io.github.nosequel.hcf.teams.Team;
 import io.github.nosequel.hcf.teams.TeamHandler;
 import io.github.nosequel.storage.mongo.provider.MongoStorageProvider;
@@ -28,6 +32,12 @@ public class TeamsPlugin extends JavaPlugin {
     public void onEnable() {
         this.teamHandler = new TeamHandler(this.storageProviders.toArray(new MongoStorageProvider[0]));
         this.teamHandler.loadTeams();
+
+        // simple command registration
+        final CommandHandler commandHandler = new BukkitCommandHandler("teams");
+
+        commandHandler.registerTypeAdapter(Team.class, new TeamTypeAdapter(this.teamHandler));
+        commandHandler.registerCommand(new TeamCommand(this.teamHandler));
     }
 
     @Override

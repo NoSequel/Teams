@@ -11,13 +11,24 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
 public class TeamMember {
 
     private String name;
     private PlayerRole role;
 
     private final UUID uniqueId;
+
+    /**
+     * Constructor to make a new {@link TeamMember} object.
+     *
+     * @param name     the name of the member
+     * @param uniqueId the unique identifier of the member
+     */
+    public TeamMember(String name, UUID uniqueId, PlayerRole role) {
+        this.name = name;
+        this.uniqueId = uniqueId;
+        this.role = role;
+    }
 
     /**
      * Get an {@link OfflinePlayer} object from the
